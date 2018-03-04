@@ -13,15 +13,18 @@ class App extends Component {
   componentDidMount() {
     var socket = new WebSocket("ws://stocks.mnet.website");
 
-    socket.onerror = (error) => {
+    socket.onerror = error => {
       console.log("WebSocket Error: " + error);
+      this.setState({
+        error: true
+      });
     };
 
-    socket.onopen = (event) => {
+    socket.onopen = event => {
       console.log("socket is open");
     };
 
-    socket.onmessage = (event) => {
+    socket.onmessage = event => {
       const data = [];
       const message = JSON.parse(event.data);
 
@@ -32,18 +35,21 @@ class App extends Component {
         };
         data.push(obj);
       });
-      
+
       this.setState({
-        data,
+        data
       });
     };
   }
 
   render() {
-    console.log('data ', this.state.data);
+    const { data } = this.state;
+
+    console.log("data ", data);
     return (
       <div className="App">
         <p className="App-intro">live stock app</p>
+        <LiveStocks stocks={data} />
       </div>
     );
   }
