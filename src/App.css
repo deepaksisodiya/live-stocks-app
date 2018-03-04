@@ -1,7 +1,5 @@
 .App {
-  text-align: center;
-}
-
-.App-intro {
-  font-size: large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

@@ -48,7 +48,7 @@ class App extends Component {
     console.log("data ", data);
     return (
       <div className="App">
-        <p className="App-intro">live stock app</p>
+        <p>Live Stocks App</p>
         <LiveStocks stocks={data} />
       </div>
     );

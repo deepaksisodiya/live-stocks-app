@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 
+import "./liveStocks.css";
+
 export default class LiveStocks extends Component {
   render() {
     const { stocks } = this.props;
 
     return (
       <div>
-        <p>Create Table Here</p>
         <table>
           <tbody>
             <tr>
