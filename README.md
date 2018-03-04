@@ -1,4 +1,4 @@
-# Flight Search Engine
+# Live Stocks App
 
 ## Technologies
 
