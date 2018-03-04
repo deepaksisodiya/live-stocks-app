@@ -40,19 +40,11 @@ export default class LiveStocks extends Component {
             })}
           </tbody>
         </table>
-      )
+      );
     }
   };
 
-
   render() {
-    const { stocks, isLoading, isError } = this.props;
-
-    
-    return (
-      <div>
-        {this.renderData()}
-      </div>
-    );
+    return <div>{this.renderData()}</div>;
   }
 }
