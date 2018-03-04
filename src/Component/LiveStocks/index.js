@@ -3,11 +3,27 @@ import React, { Component } from "react";
 import "./liveStocks.css";
 
 export default class LiveStocks extends Component {
-  render() {
-    const { stocks } = this.props;
+  renderData = () => {
+    const { stocks, isLoading, isError } = this.props;
 
-    return (
-      <div>
+    if (isLoading) {
+      return (
+        <div>
+          <p>Loading...</p>
+        </div>
+      );
+    }
+
+    if (isError) {
+      return (
+        <div>
+          <p>Some Error, Please try again!</p>
+        </div>
+      );
+    }
+
+    if (stocks) {
+      return (
         <table>
           <tbody>
             <tr>
@@ -24,6 +40,18 @@ export default class LiveStocks extends Component {
             })}
           </tbody>
         </table>
+      )
+    }
+  };
+
+
+  render() {
+    const { stocks, isLoading, isError } = this.props;
+
+    
+    return (
+      <div>
+        {this.renderData()}
       </div>
     );
   }

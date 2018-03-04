@@ -6,7 +6,8 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    error: false,
+    isError: false,
+    isLoading: true,
     data: []
   };
 
@@ -16,7 +17,8 @@ class App extends Component {
     socket.onerror = error => {
       console.log("WebSocket Error: " + error);
       this.setState({
-        error: true
+        isError: true,
+        isLoading: false,
       });
     };
 
@@ -25,6 +27,8 @@ class App extends Component {
     };
 
     socket.onmessage = event => {
+      console.log("event ", event);
+
       const data = [];
       const message = JSON.parse(event.data);
 
@@ -37,19 +41,20 @@ class App extends Component {
       });
 
       this.setState({
-        data
+        data,
+        isLoading: false,
       });
     };
   }
 
   render() {
-    const { data } = this.state;
+    const { data, isLoading, isError } = this.state;
 
     console.log("data ", data);
     return (
       <div className="App">
         <p>Live Stocks App</p>
-        <LiveStocks stocks={data} />
+        <LiveStocks stocks={data} isLoading={isLoading} isError={isError} />
       </div>
     );
   }
