@@ -7,6 +7,8 @@ export default class LiveStocks extends Component {
   renderData = () => {
     const { stocks, isLoading, isError } = this.props;
 
+    console.log('stocks ', stocks);
+
     if (isLoading) {
       return (
         <div>
@@ -30,12 +32,14 @@ export default class LiveStocks extends Component {
             <tr>
               <th>Ticker</th>
               <th>Price</th>
+              <th>Last Update</th>
             </tr>
             {stocks.map((stock, index) => {
               return (
                 <tr key={index}>
                   <td>{stock.name}</td>
                   <td>{stock.price}</td>
+                  <td>{stock.lastUpdate}</td>
                 </tr>
               );
             })}

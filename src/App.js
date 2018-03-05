@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 
 import LiveStocks from "./Component/LiveStocks";
 
@@ -33,7 +34,8 @@ class App extends Component {
       message.forEach(([name, price]) => {
         const obj = {
           name,
-          price
+          price,
+          lastUpdate: moment().format("MMMM Do YYYY, h:mm:ss a")
         };
         data[name] = obj;
       });
