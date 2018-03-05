@@ -28,38 +28,43 @@ class App extends Component {
     };
 
     socket.onmessage = event => {
-      const message = JSON.parse(event.data);
-      const data = {};
-
-      message.forEach(([name, price]) => {
-        const stateData = this.state.data[name];
-        let color = "white";
-        if (stateData) {
-          if (stateData.price > price) {
-            color = "red";
-          } else {
-            color = "green";
-          }
-        }
-
-        const obj = {
-          name,
-          price,
-          lastUpdate: moment().format("MMMM Do YYYY, h:mm:ss a"),
-          color
-        };
-
-        data[name] = obj;
-      });
-
-      const dataToSetTheState = Object.assign({}, this.state.data, data);
-
-      this.setState({
-        data: dataToSetTheState,
-        isLoading: false
-      });
+      this.onMessage(event);
     };
   }
+
+  onMessage = event => {
+    const message = JSON.parse(event.data);
+    const data = {};
+
+    message.forEach(([name, price]) => {
+      const previousData = this.state.data[name];
+      let color = "white";
+
+      if (previousData) {
+        if (previousData.price > price) {
+          color = "red";
+        } else {
+          color = "green";
+        }
+      }
+
+      const stockObj = {
+        lastUpdate: moment().format("MMMM Do YYYY, h:mm:ss a"),
+        name,
+        price,
+        color
+      };
+
+      data[name] = stockObj;
+    });
+
+    const newData = Object.assign({}, this.state.data, data);
+
+    this.setState({
+      data: newData,
+      isLoading: false
+    });
+  };
 
   render() {
     const { data, isLoading, isError } = this.state;
