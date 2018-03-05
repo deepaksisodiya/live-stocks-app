@@ -21,7 +21,7 @@ npm start
 
 * [https://deepaksisodiya.github.io/live-stocks-app](https://deepaksisodiya.github.io/live-stocks-app)
 
-## Gitbuh Page link no working (Chrome Specific)
+## Gitbuh Page link not working (Chrome Specific)
 
 
 1. On the URL of chrome browser, You can see the shield icon.
