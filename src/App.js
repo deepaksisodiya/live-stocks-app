@@ -32,16 +32,27 @@ class App extends Component {
       const data = {};
 
       message.forEach(([name, price]) => {
+        const stateData = this.state.data[name];
+        let color = "white";
+        if (stateData) {
+          if (stateData.price > price) {
+            color = "red";
+          } else {
+            color = "green";
+          }
+        }
+
         const obj = {
           name,
           price,
-          lastUpdate: moment().format("MMMM Do YYYY, h:mm:ss a")
+          lastUpdate: moment().format("MMMM Do YYYY, h:mm:ss a"),
+          color
         };
 
         data[name] = obj;
       });
 
-      const dataToSetTheState = Object.assign({}, this.state.data, data)
+      const dataToSetTheState = Object.assign({}, this.state.data, data);
 
       this.setState({
         data: dataToSetTheState,

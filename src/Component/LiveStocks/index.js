@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import "./liveStocks.css";
 
@@ -7,7 +7,7 @@ export default class LiveStocks extends Component {
   renderData = () => {
     const { stocks, isLoading, isError } = this.props;
 
-    console.log('stocks ', stocks);
+    console.log("stocks ", stocks);
 
     if (isLoading) {
       return (
@@ -38,7 +38,9 @@ export default class LiveStocks extends Component {
               return (
                 <tr key={index}>
                   <td>{stock.name}</td>
-                  <td>{stock.price}</td>
+                  <td style={{ backgroundColor: stock.color }}>
+                    {stock.price}
+                  </td>
                   <td>{stock.lastUpdate}</td>
                 </tr>
               );
@@ -57,5 +59,5 @@ export default class LiveStocks extends Component {
 LiveStocks.propTypes = {
   isError: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  stocks: PropTypes.array.isRequired,
-}
+  stocks: PropTypes.array.isRequired
+};
