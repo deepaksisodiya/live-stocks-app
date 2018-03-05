@@ -1,14 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import "./liveStocks.css";
 
-export default class LiveStocks extends Component {
-  renderData = () => {
-    const { stocks, isLoading, isError } = this.props;
-
-    console.log("stocks ", stocks);
-
+const LiveStocks = ({ stocks, isLoading, isError }) => {
+  const renderData = () => {
     if (isLoading) {
       return (
         <div>
@@ -51,13 +47,13 @@ export default class LiveStocks extends Component {
     }
   };
 
-  render() {
-    return <div>{this.renderData()}</div>;
-  }
-}
+  return <div>{renderData()}</div>;
+};
 
 LiveStocks.propTypes = {
   isError: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
   stocks: PropTypes.array.isRequired
 };
+
+export default LiveStocks;
