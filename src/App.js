@@ -37,11 +37,14 @@ class App extends Component {
           price,
           lastUpdate: moment().format("MMMM Do YYYY, h:mm:ss a")
         };
+
         data[name] = obj;
       });
 
+      const dataToSetTheState = Object.assign({}, this.state.data, data)
+
       this.setState({
-        data: Object.values(data),
+        data: dataToSetTheState,
         isLoading: false
       });
     };
@@ -53,7 +56,11 @@ class App extends Component {
     return (
       <div className="App">
         <p>Live Stocks App</p>
-        <LiveStocks stocks={data} isLoading={isLoading} isError={isError} />
+        <LiveStocks
+          stocks={Object.values(data)}
+          isLoading={isLoading}
+          isError={isError}
+        />
       </div>
     );
   }
